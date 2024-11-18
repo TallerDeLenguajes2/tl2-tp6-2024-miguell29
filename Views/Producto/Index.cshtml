@@ -1,0 +1,14 @@
+
+@using tl2_tp5_2024_miguell29.Models;
+@model List<Producto>
+
+
+<section>
+    <h2 class="display-3">Lista de Productos</h2>
+    <ul class="list-group list-group-flush p-5">
+        @foreach(var producto in Model)
+        {
+            <li class=" list-group-item text-info display-6">@producto.Descripcion</li>
+        }
+    </ul>
+</section>
