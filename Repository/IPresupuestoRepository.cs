@@ -2,9 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using tl2_tp5_2024_miguell29.Models;
+using Models;
 
-namespace tl2_tp5_2024_miguell29.Repository
+namespace Repository
 {
     public interface IPresupuestoRepository
     {

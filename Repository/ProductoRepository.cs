@@ -1,7 +1,7 @@
 using Microsoft.Data.Sqlite;
-using tl2_tp5_2024_miguell29.Models;
+using Models;
 
-namespace tl2_tp5_2024_miguell29.Repository
+namespace Repository
 {
     public class ProductoRepository : IProductoRepository
     {
@@ -71,7 +71,7 @@ namespace tl2_tp5_2024_miguell29.Repository
         public Producto GetProductById(int id)
         {
             Producto producto = new Producto();
-            string query = @"SELECT idProducto, Descipcion, Precio 
+            string query = @"SELECT idProducto, Descripcion, Precio 
                             FROM Productos 
                             WHERE idProducto = @id";
             using (SqliteConnection connection = new SqliteConnection(_stringConnection))

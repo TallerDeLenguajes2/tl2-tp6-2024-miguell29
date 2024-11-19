@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace tl2_tp5_2024_miguell29.Models
+namespace Models
 {
     public class PresupuestoDetalle
     {
