@@ -10,17 +10,21 @@ namespace Models
         public int IdPresupuesto { get; set; }
         public string NombreDestinatario { get; set; }
         public List<PresupuestoDetalle> Detalle { get; set; }    
-        public void MontoPresupuesto()
+        public decimal MontoPresupuesto()
         {
-
+            if (CantidadProductos() == 0)
+            {
+                return 0;
+            }
+            return Detalle.Sum(d => d.Cantidad * d.Producto.Precio);
         }
         public void MontoPresupuestoConIva()
         {
             
         }
-        public void CantidadProductos()
+        public int CantidadProductos()
         {
-            
+            return Detalle.Count;
         }
     }
 }

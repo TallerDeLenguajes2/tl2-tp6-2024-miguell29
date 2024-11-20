@@ -1,6 +1,9 @@
 
 @using Models;
 @model Producto
+@{
+    ViewData["Title"] = "Lista de Productos" as string;
+}
 <section class="contariner">
     <h2>Editar Producto</h2>
     <form asp-action="Editar" method="post">

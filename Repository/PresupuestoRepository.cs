@@ -149,7 +149,7 @@ namespace Repository
                 if (presupuesto.IdPresupuesto == 0)
                 {
                     presupuesto.IdPresupuesto = id;
-                    presupuesto.NombreDestinatario = nombres[id];
+                    presupuesto.NombreDestinatario = nombres[id-1];
                 }
                 presupuestos.Add(presupuesto);
             }

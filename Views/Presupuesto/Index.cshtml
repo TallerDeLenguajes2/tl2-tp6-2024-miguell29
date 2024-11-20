@@ -1,0 +1,57 @@
+@using Models;
+@model List<Presupuesto>
+@{
+    ViewData["Title"] = "Listado de Presupuesto";
+}
+
+<section>
+    <h2 class="display-3">Listado de Presupuesto </h2>
+    <a asp-action="AgregarPresupuesto" asp-controller="Presupuesto" class="btn btn-primary mt-3"><strong>Agregar
+            Presupuesto</strong></a>
+    <ul class="list-group list-group-flush ">
+        @if (Model != null && Model.Any())
+        {
+            @foreach (var presupuesto in Model)
+            {
+                <li class=" list-group-item text-info">
+
+                    <span class="text-size-2">@presupuesto.NombreDestinatario</span>
+                    <span class="badge bg-secondary m-0 p-2"><strong> @presupuesto.CantidadProductos() </strong></span>
+
+                    <section class="float-md-end">
+                        <a asp-action="Detalles" asp-controller="Presupuesto" asp-route-id="@presupuesto.IdPresupuesto"
+                            class="btn btn-sm btn-warning p-2"><strong>Ver Detalles</strong></a>
+                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modal-@presupuesto.IdPresupuesto">
+                            Eliminar
+                        </button>
+                        <div class="modal fade" tabindex="-1" id="modal-@presupuesto.IdPresupuesto">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Eliminar Presupuesto</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>¿Desea Eliminar este presupuesto?</p>
+                                        <p>@presupuesto.NombreDestinatario, con:</p>
+                                        <p>@presupuesto.CantidadProductos() Productos.</p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                        <a  asp-action="Eliminar" asp-controller="Presupuesto" asp-route-id="@presupuesto.IdPresupuesto" class="btn btn-danger">Eliminar</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </li>
+            }
+        }
+        else
+        {
+            <li class="list-group-item">No hay presupuestos disponibles.</li>
+        }
+
+    </ul>
+</section>
