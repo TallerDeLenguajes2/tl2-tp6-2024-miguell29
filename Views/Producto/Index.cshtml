@@ -5,28 +5,51 @@
 }
 
 <section>
-    <h2 class="display-3">Lista de Productos  </h2>
-    <a asp-action="AgregarProducto" asp-controller="Producto" class="btn btn-primary mt-3"><strong>Agregar Producto</strong></a>
+    <h2 class="display-3">Lista de Productos </h2>
+    <a asp-action="AgregarProducto" asp-controller="Producto" class="btn btn-primary mt-3"><strong>Agregar
+            Producto</strong></a>
     <ul class="list-group list-group-flush ">
-        @if(Model != null && Model.Any())
+        @if (Model != null && Model.Any())
         {
-            @foreach(var producto in Model)
+            @foreach (var producto in Model)
             {
                 <li class=" list-group-item text-info">
-                    
-                        <span class="text-size-2">@producto.Descripcion</span>
-                        <span class="badge bg-secondary m-0 p-2"><strong> @producto.Precio </strong></span>
-                    
+
+                    <span class="text-size-2">@producto.Descripcion</span>
+                    <span class="badge bg-secondary m-0 p-2"><strong> @producto.Precio </strong></span>
+
                     <section class="float-md-end">
-                        <a asp-action="Editar" asp-controller="Producto" asp-route-id="@producto.Id" class="btn btn-sm btn-warning p-2"><strong>Editar</strong></a>
-                        <a asp-action="Eliminar" asp-controller="Producto" asp-route-id="@producto.Id" class="btn btn-sm btn-danger p-2"><strong>Eliminar</strong></a>
+                        <a asp-action="Editar" asp-controller="Producto" asp-route-id="@producto.Id"
+                            class="btn btn-sm btn-warning p-2"><strong>Editar</strong></a>
+                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modal-@producto.Id">
+                            Eliminar
+                        </button>
+                        <div class="modal fade" tabindex="-1" id="modal-@producto.Id">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Eliminar Producto</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>¿Desea Eliminar este producto: <br/>@producto.Descripcion?</p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                        <a  asp-action="Eliminar" asp-controller="Producto" asp-route-id="@producto.Id" class="btn btn-danger">Eliminar</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </section>
                 </li>
             }
-        }else
+        }
+        else
         {
             <li class="list-group-item">No hay productos disponibles.</li>
         }
-        
+
     </ul>
 </section>

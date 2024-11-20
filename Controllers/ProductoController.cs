@@ -55,6 +55,12 @@ namespace TP6.Controllers
             return View("Index", productos);
         }
 
+        public IActionResult Eliminar(int id)
+        {
+            _productoRepository.DeleteProduct(id);
+            var productos = _productoRepository.GetProducts();
+            return View("Index",productos);
+        }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
